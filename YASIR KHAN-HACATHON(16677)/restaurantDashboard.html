@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTAURANT Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link active text-dark" href="restaurantDashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="Restaurant/category/addCategory.html">Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="Restaurant/Items/addItems.html ">Items</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- BreadCrumbs -->
+        <nav aria-label="breadcrumb" class="mt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-dark active" aria-current="page">Dashboard</li>
+                <li class="breadcrumb-item">
+                    <select class="form-select bg-dark text-light form-select-sm ms-3" id="dashboardBread" aria-label="Default select example">
+                        <option value="1">Pending</option>
+                        <option value="2">Accepted</option>
+                        <option value="2">Rejected</option>
+                        <option value="3">Delivered</option>
+                      </select>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Bootstap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <!-- Firebase  -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDeExwxqh4wqgWjJSPqlfFjy0OKvzqC5OI",
+            authDomain: "hacathon-16677.firebaseapp.com",
+            projectId: "hacathon-16677",
+            storageBucket: "hacathon-16677.appspot.com",
+            messagingSenderId: "557959877491",
+            appId: "1:557959877491:web:4b2ace4c4a4a0b88a96b06"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <!-- Javascript -->
+    <script src="app.js"></script>
+    <script src="restaurantDashboard.js"></script>
+</body>
+
+</html>

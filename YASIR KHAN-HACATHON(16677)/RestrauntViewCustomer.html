@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants Page</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="#"><i class="bi bi-person-square text-light fs-2"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" href="customerDashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="customerRestaurant.html">Restaurants</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid "></div>
+    <div class="row justify-content-center" id="restaurantsItems">
+        <div class="card col-3 bg-dark text-light" style="width: 18rem;--bs-bg-opacity: .7;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+    <!-- Bootstap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDeExwxqh4wqgWjJSPqlfFjy0OKvzqC5OI",
+            authDomain: "hacathon-16677.firebaseapp.com",
+            projectId: "hacathon-16677",
+            storageBucket: "hacathon-16677.appspot.com",
+            messagingSenderId: "557959877491",
+            appId: "1:557959877491:web:4b2ace4c4a4a0b88a96b06"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <!-- Javascript -->
+    <script>
+        let viewItems = () => {
+            document.getElementById("restaurantsItems").innerHTML = "";
+            let items;
+            firebase.database().ref(`Items/${uID}`).on("value", (data) => {
+                items = data.val();
+                console.log(items)
+                for (let item in items) {
+                    document.getElementById("restaurantsItems").innerHTML += `
+          <div class="card mt-3 mx-3 col-3 bg-light text-dark" style="width: 18rem;--bs-bg-opacity: .9;">
+          <img src="${items[item].url}" width="100" height="170" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${items[item].name}</h5>
+            <p class="card-text">Category: ${items[item].categoryOption}<br>Price: ${items[item].price}<br>Delivery: ${items[item].deliveryOption}</p>
+            <button onclick="order('${uID}','${item}')" class="btn btn-success px-5">Order</a>
+          </div>
+        </div>
+      `;
+                    console.log(item)
+                }
+            });
+        }
+        let uID = localStorage.getItem("restaurantItems");
+        if (uID) {
+            viewItems();
+        } else {
+            document.getElementById("restaurantsItems").innerHTML = "";
+        }
+    </script>
+    <script src="order.js"></script>
+</body>
+
+</html>
